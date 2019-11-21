@@ -14,7 +14,7 @@ const Home = () => (
     />
     <Message 
       isMe={true}
-      isReaded={true}
+      isReaded={false}
       avatar="https://sun9-11.userapi.com/c855124/v855124025/c074c/M2uI9C1Xpts.jpg?ava=1" 
       text="Hello me!" 
       date={new Date(2019, 10, 21, 18, 50, 0)} 

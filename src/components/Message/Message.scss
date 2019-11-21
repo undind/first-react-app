@@ -2,11 +2,15 @@
 
 .message {
   $self: &;
-  display: flex;
+
+  &__icon-readed {
+    position: absolute;
+    left: -31px;
+    bottom: 25px;
+  }
 
   &__content {
     display: flex;
-    flex-direction: column;
     max-width: 440px;
     margin-bottom: 20px;
     position: relative;
@@ -27,8 +31,13 @@
       width: 33px;
       height: 33px;
       margin-right: 13px;
-      margin-bottom: 40px;
+      margin-bottom: 23px;
     }
+  }
+
+  &__info {
+    display: flex;
+    flex-direction: column;
   }
 
   &__bubble {
@@ -52,6 +61,10 @@
   &--isme {
     display: flex;
     flex-direction: row-reverse;
+
+    #{$self}__content{
+      flex-direction: row-reverse;
+    }
 
     #{$self}__avatar {
       img {
