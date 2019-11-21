@@ -1,58 +1,81 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Form, Icon, Input } from 'antd';
 import { Link } from "react-router-dom";
 
 import { Button, Block } from 'components';
+const success = false;
 
-class RegisterForm extends Component {
-  render() {
-    const success = false;
-    return (
-      <div>
-        <div className="auth__top">
-          <h2>Регистрация</h2>
-          <p>Для входа в чат, Вам нужно зарегистрироваться</p>
-        </div>
-        <Block>
-          {!success ? (
-            <Form onSubmit={this.handleSubmit} className="login-form">
-              <Form.Item>
-                <Input
-                  prefix={<Icon type="mail" style={{ color: 'rgba(0,0,0,.25)' }} />}
-                  placeholder="E-mail"
-                  size="large"
-                />
-              </Form.Item>
-              <Form.Item>
-                <Input
-                  prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />}
-                  type="password"
-                  placeholder="Ваше имя"
-                  size="large"
-                />
-              </Form.Item>
-              <Form.Item>
-                <Input
-                  prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />}
-                  type="password"
-                  placeholder="Пароль"
-                  size="large"
-                />
-              </Form.Item>
-              <Form.Item>
-                <Input
-                  prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />}
-                  type="password"
-                  placeholder="Повторите пароль"
-                  size="large"
-                />
-              </Form.Item>
-              <Form.Item>
-                <Button type="primary" htmlType="submit" size="large">Зарегестрироваться</Button>
-              </Form.Item>
-              <Link className="auth__register-link" to="/login">Войти в аккаунт</Link>
-            </Form>
-          ) : (
+const RegisterForm = props => {
+  const {
+    values,
+    touched,
+    errors,
+    handleChange,
+    handleBlur,
+    handleSubmit,
+  } = props;
+  return (
+    <div>
+      <div className="auth__top">
+        <h2>Регистрация</h2>
+        <p>Для входа в чат, Вам нужно зарегистрироваться</p>
+      </div>
+      <Block>
+        {!success ? (
+          <Form onSubmit={handleSubmit} className="login-form">
+            <Form.Item 
+              validateStatus={!touched.email ? '' : errors.email ? 'error' : 'success'} 
+              hasFeedback
+              help={!touched.email ? '' : errors.email}
+            >
+              <Input
+                prefix={<Icon type="mail" style={{ color: 'rgba(0,0,0,.25)' }} />}
+                placeholder="E-mail"
+                size="large"
+                id="email"
+                value={values.email}
+                onChange={handleChange}
+                onBlur={handleBlur}
+              />
+            </Form.Item>
+            <Form.Item>
+              <Input
+                prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />}
+                type="password"
+                placeholder="Ваше имя"
+                size="large"
+              />
+            </Form.Item>
+            <Form.Item
+              validateStatus={!touched.password ? '' : errors.password ? 'error' : 'success'} 
+              hasFeedback
+              help={!touched.password ? '' : errors.password}
+            >
+              <Input
+                prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />}
+                id="password"
+                type="password"
+                placeholder="Пароль"
+                size="large"
+                value={values.password}
+                onChange={handleChange}
+                onBlur={handleBlur}
+              />
+            </Form.Item>
+            <Form.Item>
+              <Input
+                prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />}
+                type="password"
+                placeholder="Повторите пароль"
+                size="large"
+              />
+            </Form.Item>
+            <Form.Item>
+              <Button type="primary" onClick={handleSubmit} size="large">Зарегистрироваться</Button>
+            </Form.Item>
+            <Link className="auth__register-link" to="/login">Войти в аккаунт</Link>
+          </Form>
+        ) : (
             <div className="auth__success-block">
               <div>
                 <Icon type="info-circle" theme="twoTone" />
@@ -61,13 +84,12 @@ class RegisterForm extends Component {
               <p>
                 На Вашу почту отправлено письмо с ссылкой на подтверждение
                 аккаунта.
-              </p>
+            </p>
             </div>
-            )}
-        </Block>
-      </div>
-    )
-  }
-}
+          )}
+      </Block>
+    </div>
+  )
+};
 
 export default RegisterForm;
