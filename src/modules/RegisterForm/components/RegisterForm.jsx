@@ -13,6 +13,8 @@ const RegisterForm = props => {
     handleChange,
     handleBlur,
     handleSubmit,
+    isValid,
+    isSubmitting
   } = props;
   return (
     <div>
@@ -71,6 +73,7 @@ const RegisterForm = props => {
               />
             </Form.Item>
             <Form.Item>
+              {isSubmitting && !isValid && <span>Ошибка!</span>}
               <Button type="primary" onClick={handleSubmit} size="large">Зарегистрироваться</Button>
             </Form.Item>
             <Link className="auth__register-link" to="/login">Войти в аккаунт</Link>
