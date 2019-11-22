@@ -6,7 +6,9 @@ export default withFormik({
   enableReinitialize: true,
   mapPropsToValues: () => ({
     email: '',
-    password: ''
+    fullname: '',
+    password: '',
+    password_2: ''
   }),
   validate: values => {
     let errors = {};

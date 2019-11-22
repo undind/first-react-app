@@ -8,10 +8,10 @@ import noReadedSvg from "assets/img/noreaded.svg";
 
 import './Message.scss';
 
-const Message = ({ avatar, user, text, date, isMe, isReaded, attachments }) => (
-  <div className={classNames('message', { 'message--isme': isMe })}>
+const Message = ({ avatar, user, text, date, isMe, isReaded, attachments, isTyping }) => (
+  <div className={classNames('message', { 'message--isme': isMe, 'message--is-typing': isTyping, 'message--image': attachments && attachments.length === 1 })}>
     <div className="message__content">
-      {isMe && isReaded ? (
+      {isMe && (isReaded ? (
         <img
           className="message__icon-readed"
           src={readedSvg}
@@ -21,14 +21,19 @@ const Message = ({ avatar, user, text, date, isMe, isReaded, attachments }) => (
             className="message__icon-readed"
             src={noReadedSvg}
             alt="No readed Icon"
-          />)}
+          />))}
       <div className="message__avatar">
         <img src={avatar} alt={`Avatar ${user.fullname}`} />
       </div>
       <div className="message__info">
-        <div className="message__bubble">
-          <p className="message__text">{text}</p>
-        </div>
+        {(text || isTyping) && (<div className="message__bubble">
+          {text && <p className="message__text">{text}</p>}
+          {isTyping && <div className="message__typing">
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>}
+        </div>)}
         <div className="message__attachments">
           {
             attachments && attachments.map((item, index) => (
@@ -38,7 +43,7 @@ const Message = ({ avatar, user, text, date, isMe, isReaded, attachments }) => (
             ))
           }
         </div>
-        <span className="message__date">{formatDistanceToNow(date, { addSuffix: true, locale: ruLocale })}</span>
+        {date && <span className="message__date">{formatDistanceToNow(date, { addSuffix: true, locale: ruLocale })}</span>}
       </div>
     </div>
   </div>
@@ -55,6 +60,7 @@ Message.propTypes = {
   date: PropTypes.object,
   user: PropTypes.object,
   attachments: PropTypes.array,
+  isTyping: PropTypes.bool
 };
 
 export default Message;

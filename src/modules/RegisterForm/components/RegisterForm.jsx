@@ -64,12 +64,20 @@ const RegisterForm = props => {
                 onBlur={handleBlur}
               />
             </Form.Item>
-            <Form.Item>
+            <Form.Item
+              validateStatus={!touched.password_2 ? '' : errors.password_2 ? 'error' : 'success'} 
+              hasFeedback
+              help={!touched.password_2 ? '' : errors.password_2}
+            >
               <Input
                 prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />}
                 type="password"
+                id="password_2"
                 placeholder="Повторите пароль"
                 size="large"
+                value={values.password_2}
+                onChange={handleChange}
+                onBlur={handleBlur}
               />
             </Form.Item>
             <Form.Item>
