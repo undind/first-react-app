@@ -1,12 +1,28 @@
 import React from 'react';
 
-import { Message } from 'components';
+import { DialogItem } from 'components';
 
 import './Home.scss';
 
 const Home = () => (
   <section className="home">
-    <Message 
+    <div className="dialogs">
+      <DialogItem />
+    </div>
+    {/* <Dialogs item={[
+      {
+        user: {
+          fullname: 'Ivan Ivanov',
+          avatar: null
+        },
+        message: {
+          text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
+          isReaded: false,
+          created_at: new Date()
+        }
+      }
+    ]} /> */}
+    {/* <Message 
       isMe={false} 
       avatar="https://sun9-21.userapi.com/c831408/v831408737/a797b/AOuegaEIaeA.jpg?ava=1" 
       text="Салам Бро! Салам Бро! Салам Бро! Салам Бро!Салам Бро!Салам Бро!" 
@@ -45,7 +61,7 @@ const Home = () => (
           url: 'https://source.unsplash.com/100x100/?random=1&nature,water'
         }
       ]}
-    />
+    /> */}
   </section>
 );
 
