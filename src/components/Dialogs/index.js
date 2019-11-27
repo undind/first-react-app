@@ -4,15 +4,16 @@ import { DialogItem } from '../';
 
 import './Dialogs.scss';
 
-const Dialogs = ({ items }) => (
+const Dialogs = ({ items, userId }) => (
   <div className="dialogs">
     {
       items.map((item, index) => (
         <DialogItem 
-          user={item.user}
-          message={item.lastMessage}
+          user={item.message.user}
+          message={item.message}
           unreaded={0}
-          key={index}
+          key={item._id}
+          isMe={item.message.user._id === userId}
         />
       ))
     }
