@@ -9,30 +9,26 @@ const Home = () => (
     <Dialogs items={[
       {
         _id: Math.random(),
-        message: {
-          text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
-          isReaded: false,
-          created_at: new Date('December 17, 2019 03:24:00'),
-          user: {
-            _id: 1,
-            fullname: 'Ivan Ivanov',
-            avatar: null
-          },
+        text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
+        isReaded: false,
+        created_at: new Date('March 17, 2019 03:24:00'),
+        user: {
+          _id: 1,
+          fullname: 'Ivan Ivanov',
+          avatar: null,
         }
       },
       {
         _id: Math.random(),
-        message: {
-          text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
-          isReaded: false,
-          created_at: new Date(),
-          user: {
-            _id: 1,
-            fullname: 'Egor Petrov',
-            avatar: "https://sun9-11.userapi.com/c855124/v855124025/c074c/M2uI9C1Xpts.jpg?ava=1"
-          },
+        text: 'Labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
+        isReaded: false,
+        created_at: new Date(),
+        user: {
+          _id: 1,
+          fullname: 'Egor Petrov',
+          avatar: null,
         }
-      }
+      },
     ]} />
     {/* <Message 
       isMe={false} 

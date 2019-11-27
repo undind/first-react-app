@@ -16,7 +16,7 @@ const getMessageTime = created_at => {
 }
 
 const getAvatar = avatar => {
-  if (avatar) {
+  if (!avatar) {
     return (
       <img src="https://sun9-21.userapi.com/c831408/v831408737/a797b/AOuegaEIaeA.jpg?ava=1" alt="" />
     )
@@ -25,7 +25,7 @@ const getAvatar = avatar => {
   }
 };
 
-const DialogItem = ({ user, message, unreaded, isMe }) => (
+const DialogItem = ({ user, unreaded, isMe, created_at, text }) => (
   <div className={classNames("dialogs__item", {"dialogs__item--online" : user.isOnline})}>
     <div className="dialogs__item-avatar">
       {getAvatar(user.avatar)}
@@ -34,14 +34,14 @@ const DialogItem = ({ user, message, unreaded, isMe }) => (
       <div className="dialogs__item-info-top">
         <b>{user.fullname}</b>
         <span>
-          {getMessageTime(message.created_at)}
+          {getMessageTime(created_at)}
         </span>
       </div>
       <div className="dialogs__item-info-bottom">
         <p>
-          {message.text}
+          {text}
         </p>
-        {isMe && <IconReaded isMe={true} isReaded={false}/>}
+        {isMe && <IconReaded isMe={true} isReaded={true}/>}
         {unreaded > 0 && <div className="dialogs__item-unread-count">{unreaded}</div>}
       </div>
     </div>
