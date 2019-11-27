@@ -1,0 +1,73 @@
+import React from 'react';
+
+import { DialogItem } from 'components';
+
+import './Home.scss';
+
+const Home = () => (
+  <section className="home">
+    <div className="dialogs">
+      <DialogItem user={{
+        fullname: 'Ivan Ivanov',
+        isOnline: true
+      }} 
+      unreaded={0}
+      />
+    </div>
+    {/* <Dialogs item={[
+      {
+        user: {
+          fullname: 'Ivan Ivanov',
+          avatar: null
+        },
+        message: {
+          text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
+          isReaded: false,
+          created_at: new Date()
+        }
+      }
+    ]} /> */}
+    {/* <Message 
+      isMe={false} 
+      avatar="https://sun9-21.userapi.com/c831408/v831408737/a797b/AOuegaEIaeA.jpg?ava=1" 
+      text="Салам Бро! Салам Бро! Салам Бро! Салам Бро!Салам Бро!Салам Бро!" 
+      date={new Date(2019, 10, 21, 18, 0, 0)}
+      attachments={[
+        {
+          filename: 'image.jpg',
+          url: 'https://source.unsplash.com/100x100/?random=1&nature,water'
+        },
+        {
+          filename: 'image.jpg',
+          url: 'https://source.unsplash.com/100x100/?random=2&nature,water'
+        },
+        {
+          filename: 'image.jpg',
+          url: 'https://source.unsplash.com/100x100/?random=3&nature,water'
+        }
+      ]}
+    />
+    <Message 
+      avatar="https://sun9-11.userapi.com/c855124/v855124025/c074c/M2uI9C1Xpts.jpg?ava=1" 
+      text="Hello me!" 
+      date={new Date(2019, 10, 21, 18, 50, 0)}
+      isMe={true}
+      isReaded={true}
+    />
+    <Message
+      avatar="https://sun9-21.userapi.com/c831408/v831408737/a797b/AOuegaEIaeA.jpg?ava=1"
+      isTyping
+    />
+    <Message
+      avatar="https://sun9-21.userapi.com/c831408/v831408737/a797b/AOuegaEIaeA.jpg?ava=1"
+      attachments={[
+        {
+          filename: 'image.jpg',
+          url: 'https://source.unsplash.com/100x100/?random=1&nature,water'
+        }
+      ]}
+    /> */}
+  </section>
+);
+
+export default Home;
