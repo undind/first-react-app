@@ -1,32 +1,24 @@
 import React from 'react';
 
-import { DialogItem } from 'components';
+import { Message, Dialogs } from 'components';
 
 import './Home.scss';
 
 const Home = () => (
   <section className="home">
-    <div className="dialogs">
-      <DialogItem user={{
-        fullname: 'Ivan Ivanov',
-        isOnline: true
-      }} 
-      unreaded={0}
-      />
-    </div>
-    {/* <Dialogs item={[
+    <Dialogs items={[
       {
         user: {
           fullname: 'Ivan Ivanov',
           avatar: null
         },
-        message: {
+        lastMessage: {
           text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
           isReaded: false,
-          created_at: new Date()
+          created_at: new Date('December 17, 2019 03:24:00')
         }
       }
-    ]} /> */}
+    ]} />
     {/* <Message 
       isMe={false} 
       avatar="https://sun9-21.userapi.com/c831408/v831408737/a797b/AOuegaEIaeA.jpg?ava=1" 
