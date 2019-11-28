@@ -29,7 +29,15 @@ const Home = () => (
           avatar: null,
         }
       },
-    ]} />
+    ]}
+    />
+
+    <Message
+      avatar="https://sun9-21.userapi.com/c831408/v831408737/a797b/AOuegaEIaeA.jpg?ava=1"
+      date={new Date(2019, 10, 21, 18, 0, 0)}
+      audio="https://notificationsounds.com/soundfiles/b5b41fac0361d157d9673ecb926af5ae/file-sounds-727-good-morning.mp3"
+    />
+
     {/* <Message 
       isMe={false} 
       avatar="https://sun9-21.userapi.com/c831408/v831408737/a797b/AOuegaEIaeA.jpg?ava=1" 
