@@ -2,16 +2,18 @@ import React from 'react';
 import classNames from 'classnames';
 import format from 'date-fns/format';
 import isToday from 'date-fns/isToday';
+import parseISO from 'date-fns/parseISO';
 
 import { IconReaded, Avatar } from '../';
 
 import './DialogItem.scss';
 
 const getMessageTime = created_at => {
-  if (isToday(created_at)) {
-    return format(created_at, "HH:mm")
+  const parseCreate_at = parseISO(created_at);
+  if (isToday(parseCreate_at)) {
+    return format(parseCreate_at, "HH:mm")
   } else {
-    return format(created_at, "dd.MM.yy")
+    return format(parseCreate_at, "dd.MM.yy")
   }
 }
 

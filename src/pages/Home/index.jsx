@@ -11,7 +11,7 @@ const Home = () => (
         _id: "390cd96d085e319fc300e2e175eb1d50",
         text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
         isReaded: false,
-        created_at: new Date('March 17, 2019 03:24:00'),
+        created_at: '2019-11-29T18:31:42+03:30',
         user: {
           _id: "390cd96d085e319fc300e2e175eb1d50",
           fullname: 'Ivan Ivanov',
@@ -22,7 +22,7 @@ const Home = () => (
         _id: "0be3275f693decda053f69a7b62df510",
         text: 'Labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
         isReaded: false,
-        created_at: new Date(),
+        created_at: '2018-01-01',
         user: {
           _id: "0be3275f693decda053f69a7b62df510",
           fullname: 'Egor Petrov',
@@ -34,7 +34,7 @@ const Home = () => (
 
     <Message
       avatar="https://sun9-21.userapi.com/c831408/v831408737/a797b/AOuegaEIaeA.jpg?ava=1"
-      date={new Date(2019, 10, 21, 18, 0, 0)}
+      date='2018-01-01'
       audio="https://notificationsounds.com/soundfiles/b5b41fac0361d157d9673ecb926af5ae/file-sounds-727-good-morning.mp3"
     />
 
