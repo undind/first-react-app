@@ -22,7 +22,7 @@ export default hash => {
       .saturate(10)
       .toHexString(),
     colorLighten: tinycolor({ r, g, b })
-      .lighten(30)
+      .lighten(40)
       .saturate(30)
       .toHexString()
   };

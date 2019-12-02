@@ -6,8 +6,6 @@ import parseISO from 'date-fns/parseISO';
 
 import { IconReaded, Avatar } from '../';
 
-import './DialogItem.scss';
-
 const getMessageTime = created_at => {
   const parseCreate_at = parseISO(created_at);
   if (isToday(parseCreate_at)) {
