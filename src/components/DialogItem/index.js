@@ -1,40 +1,38 @@
 import React from 'react';
 import classNames from 'classnames';
+import format from 'date-fns/format';
+import isToday from 'date-fns/isToday';
+import parseISO from 'date-fns/parseISO';
 
-import { Time, IconReaded } from '../';
+import { IconReaded, Avatar } from '../';
 
-import './DialogItem.scss';
-
-const getAvatar = avatar => {
-  if (avatar) {
-    return (
-      <img src="https://sun9-21.userapi.com/c831408/v831408737/a797b/AOuegaEIaeA.jpg?ava=1" alt="" />
-    )
+const getMessageTime = created_at => {
+  const parseCreate_at = parseISO(created_at);
+  if (isToday(parseCreate_at)) {
+    return format(parseCreate_at, "HH:mm")
   } else {
-    // make avatar
+    return format(parseCreate_at, "dd.MM.yy")
   }
-};
+}
 
-const DialogItem = ({ user, message, unreaded }) => (
+const DialogItem = ({ user, unread, isMe, created_at, text }) => (
   <div className={classNames("dialogs__item", {"dialogs__item--online" : user.isOnline})}>
     <div className="dialogs__item-avatar">
-      {/* <img scr={user.avatar} alt={`${user.fullname}`} /> */}
-      {getAvatar("https://sun9-21.userapi.com/c831408/v831408737/a797b/AOuegaEIaeA.jpg?ava=1")}
+      <Avatar user={user}/>
     </div>
     <div className="dialogs__item-info">
       <div className="dialogs__item-info-top">
-        <b>Ivan Ivanov</b>
+        <b>{user.fullname}</b>
         <span>
-          {/* <Time date={new Date(2019, 10, 21, 18, 0, 0)} />  */}
-          13:03
+          {getMessageTime(created_at)}
         </span>
       </div>
       <div className="dialogs__item-info-bottom">
         <p>
-          Lorem ipsum dolor sit amet...
+          {text}
         </p>
-        <IconReaded isMe={true} isReaded={false}/>
-        {unreaded > 0 && <div className="dialogs__item-unread-count">{unreaded}</div>}
+        {isMe && <IconReaded isMe={true} isReaded={true}/>}
+        {unread > 0 && <div className="dialogs__item-unread-count">{unread}</div>}
       </div>
     </div>
   </div>
