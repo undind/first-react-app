@@ -26,17 +26,6 @@
       }
     }
 
-    &-search {
-      padding: 20px 20px 20px 20px;
-
-      .ant-input {
-        background-color: #f7f8f9;
-        border: 0;
-        height: 38px;
-        padding: 4px 11px 6px;
-      }
-    }
-
     &-dialogs {
       height: calc(100% - 140px);
       overflow: auto;
@@ -82,6 +71,14 @@
       padding: 20px 20px 0 20px;
       overflow: auto;
       height: calc(100% - 142px);
+      position: relative;
+
+      .ant-empty {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+      }
     }
   }
 }
