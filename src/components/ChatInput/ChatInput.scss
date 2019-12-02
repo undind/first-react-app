@@ -1,16 +1,45 @@
 .chat-input {
   padding: 20px;
+  position: relative;
 
   &__smile-btn,
   &__actions {
     position: absolute;
+    z-index: 1;
+  }
+
+  &__smile-btn {
+    top: 50%;
+    transform: translateY(-50%);
+    left: 30px;
+  }
+
+  &__actions {
+    top: 50%;
+    transform: translateY(-50%);
+    right: 35px;
+  }
+
+  .ant-btn {
+    color: #202020; 
+    opacity: 0.6;
+    &:hover {
+      color: green;
+    }
   }
 
   i.anticon {
     font-size: 18px;
+    margin-right: 10px;
+
+    &:last-child {
+      margin-right: 0;
+    }
   }
 
   input {
+    padding-left: 45px;
+    padding-right: 100px;
     &:focus {
       box-shadow: none;
     }

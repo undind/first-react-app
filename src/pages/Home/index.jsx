@@ -1,5 +1,5 @@
 import React from 'react';
-import { Icon, Input } from 'antd';
+import { Icon, Input, Button } from 'antd';
 
 import { Message, Dialogs, Status, ChatInput } from 'components';
 
@@ -16,7 +16,7 @@ const Home = () => (
             <Icon type="team" />
             <span>Список диалогов</span>
           </div>
-          <Icon type="form" />
+          <Button type="link" shape="circle" icon="form" />
         </div>
         <div className="chat__sidebar-search">
           <Search
@@ -148,7 +148,7 @@ const Home = () => (
               <Status online={true} />
             </div>
           </div>
-          <Icon type="ellipsis" style={{ fontSize: '26px'}} />
+          <Button type="link" shape="circle" icon="ellipsis" style={{ fontSize: '26px', display: 'flex', alignItems: 'center', justifyContent: 'center'}} />
         </div>
         <div className="chat__dialog-messages">
           <Message
