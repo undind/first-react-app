@@ -1,7 +1,7 @@
 import React from 'react';
 import { Icon, Input } from 'antd';
 
-import { Message, Dialogs } from 'components';
+import { Message, Dialogs, Status, ChatInput } from 'components';
 
 import './Home.scss';
 
@@ -135,109 +135,113 @@ const Home = () => (
                 "avatar": null
               }
             },
-            {
-              "_id": "65de52fc7e0257bfc844d6c51",
-              "text": "Cupidatat reprehenderit laboris mollit duis. Qui voluptate nulla non nulla labore reprehenderit veniam sit ex laborum commodo esse consequat. Tempor velit magna nulla tempor nostrud reprehenderit exercitation anim eiusmod sit anim.",
-              "created_at": "2017-01-10T02:51:49",
-              "user": {
-                "_id": "799eb0d7028ea842b329853a886967bc",
-                "fullname": "Justine Mullen",
-                "avatar": null
-              }
-            },
-            {
-              "_id": "105de52fc70a490c4aa31e9895",
-              "text": "Eu aliqua dolore veniam nostrud cupidatat Lorem. Exercitation ipsum pariatur voluptate cupidatat consectetur eu ea excepteur reprehenderit amet cupidatat. Id Lorem eiusmod aute amet qui aliqua eiusmod esse excepteur aliqua fugiat dolore consectetur.",
-              "created_at": "2016-07-01T08:50:14",
-              "user": {
-                "_id": "125de52fc7c04cdbc3a3121f42",
-                "fullname": "Washington Hall",
-                "avatar": null
-              }
-            },
-            {
-              "_id": "65de52fc7710a78440a00fa6a",
-              "text": "Irure consequat tempor proident minim consectetur. Veniam sit proident velit sit. Laborum amet ea proident exercitation culpa elit mollit veniam ex aute.",
-              "created_at": "2018-09-19T08:59:55",
-              "user": {
-                "_id": "81aa8df1d52485c31d2ef4706ad8d7c7",
-                "fullname": "Sophia Stevens",
-                "avatar": null
-              }
-            },
-            {
-              "_id": "125de52fc75bde9445a5844a25",
-              "text": "Adipisicing dolor est dolore consequat dolore eu Lorem laborum. Duis labore ad dolor irure et ullamco reprehenderit ea. Aliquip anim sunt culpa aute aliquip ullamco laboris.",
-              "created_at": "2018-03-25T05:00:15",
-              "user": {
-                "_id": "7e3d8bb4f9e5003b72e585532af48548",
-                "fullname": "Mcclure Mays",
-                "avatar": null
-              }
-            },
-            {
-              "_id": "125de52fc718dcc408b24069f4",
-              "text": "Nulla ex enim esse aliqua mollit incididunt commodo fugiat. Enim exercitation magna tempor occaecat exercitation amet adipisicing veniam magna. Sunt eu dolore cillum amet sunt officia tempor magna enim tempor esse.",
-              "created_at": "2014-01-22T08:12:13",
-              "user": {
-                "_id": "3fd8123439c28dd0c2a6c75f54353a69",
-                "fullname": "Rosanne Sheppard",
-                "avatar": null
-              }
-            },
-            {
-              "_id": "15de52fc74f1d0b3c96587a98",
-              "text": "Esse sint magna aliqua duis anim duis reprehenderit quis exercitation do reprehenderit magna. Deserunt enim aliquip enim labore eiusmod. Reprehenderit excepteur pariatur dolore id consectetur do aliqua deserunt aliqua ullamco.",
-              "created_at": "2017-01-25T02:33:27",
-              "user": {
-                "_id": "4fe28b2a1a75c686d2ef2051183fed19",
-                "fullname": "Hilary Odonnell",
-                "avatar": null
-              }
-            },
-            {
-              "_id": "45de52fc71fbc2c222bd7772f",
-              "text": "Excepteur sint aliqua officia velit. Consectetur dolore exercitation id dolore proident. Consequat deserunt sint ut ex incididunt commodo magna laborum.",
-              "created_at": "2015-09-28T03:28:31",
-              "user": {
-                "_id": "aa27a9b9fd7e9bccac192740e63e45ff",
-                "fullname": "Teresa Stephens",
-                "avatar": null
-              }
-            },
-            {
-              "_id": "125de52fc74e2d44c8670ef08c",
-              "text": "Est laborum ad cupidatat ex pariatur dolor cupidatat in fugiat labore mollit officia labore labore. Ad incididunt cillum nostrud anim do minim id aliqua eu eu. Deserunt sint commodo reprehenderit consectetur pariatur ea ea incididunt aliquip reprehenderit commodo.",
-              "created_at": "2017-08-06T10:46:34",
-              "user": {
-                "_id": "ae07db85ca27f55e879f42cb98611e03",
-                "fullname": "Coffey Hayes",
-                "avatar": null
-              }
-            },
-            {
-              "_id": "125de52fc723f4be44e0f04ad5",
-              "text": "Magna velit esse aute voluptate ad officia ex excepteur. Dolor tempor velit deserunt velit do magna laboris in enim id. Velit officia sit occaecat ad duis pariatur do.",
-              "created_at": "2018-04-22T05:12:02",
-              "user": {
-                "_id": "a0ae957d22ed6d54d77e17f0ca537aac",
-                "fullname": "Robbie Saunders",
-                "avatar": null
-              }
-            }
           ]}
           />
         </div>
       </div>
       <div className="chat__dialog">
         <div className="chat__dialog-header">
+          <div></div>
           <div className="chat__dialog-header-center">
             <b className="chat__dialog-header-username">Sergey Antonov</b>
             <div className="chat__dialog-header-status">
-              <div className="status status--online">online</div>
+              <Status online={true} />
             </div>
           </div>
-          <Icon type="ellipsis" />
+          <Icon type="ellipsis" style={{ fontSize: '26px'}} />
+        </div>
+        <div className="chat__dialog-messages">
+          <Message
+            avatar="https://sun9-21.userapi.com/c831408/v831408737/a797b/AOuegaEIaeA.jpg?ava=1"
+            date='2019-12-02T16:31:42+03:30'
+            audio="https://notificationsounds.com/soundfiles/b5b41fac0361d157d9673ecb926af5ae/file-sounds-727-good-morning.mp3"
+          />
+
+          <Message
+            isMe={false}
+            avatar="https://sun9-21.userapi.com/c831408/v831408737/a797b/AOuegaEIaeA.jpg?ava=1"
+            text="Салам Бро! Салам Бро! Салам Бро! Салам Бро!Салам Бро!Салам Бро!"
+            date="2018-04-22T05:12:02"
+            attachments={[
+              {
+                filename: 'image.jpg',
+                url: 'https://source.unsplash.com/100x100/?random=1&nature,water'
+              },
+              {
+                filename: 'image.jpg',
+                url: 'https://source.unsplash.com/100x100/?random=2&nature,water'
+              },
+              {
+                filename: 'image.jpg',
+                url: 'https://source.unsplash.com/100x100/?random=3&nature,water'
+              }
+            ]}
+          />
+          <Message
+            avatar="https://sun9-11.userapi.com/c855124/v855124025/c074c/M2uI9C1Xpts.jpg?ava=1"
+            text="Hello me!"
+            date="2017-01-25T02:33:27"
+            isMe={true}
+            isReaded={true}
+          />
+          <Message
+            avatar="https://sun9-21.userapi.com/c831408/v831408737/a797b/AOuegaEIaeA.jpg?ava=1"
+            isTyping
+          />
+          <Message
+            avatar="https://sun9-21.userapi.com/c831408/v831408737/a797b/AOuegaEIaeA.jpg?ava=1"
+            attachments={[
+              {
+                filename: 'image.jpg',
+                url: 'https://source.unsplash.com/100x100/?random=1&nature,water'
+              }
+            ]}
+          />
+          <Message
+            isMe={false}
+            avatar="https://sun9-21.userapi.com/c831408/v831408737/a797b/AOuegaEIaeA.jpg?ava=1"
+            text="Салам Бро! Салам Бро! Салам Бро! Салам Бро!Салам Бро!Салам Бро!"
+            date="2018-04-22T05:12:02"
+          />
+          <Message
+            isMe={false}
+            avatar="https://sun9-21.userapi.com/c831408/v831408737/a797b/AOuegaEIaeA.jpg?ava=1"
+            text="Салам Бро! Салам Бро! Салам Бро! Салам Бро!Салам Бро!Салам Бро!"
+            date="2018-04-22T05:12:02"
+          />
+          <Message
+            isMe={false}
+            avatar="https://sun9-21.userapi.com/c831408/v831408737/a797b/AOuegaEIaeA.jpg?ava=1"
+            text="Салам Бро! Салам Бро! Салам Бро! Салам Бро!Салам Бро!Салам Бро!"
+            date="2018-04-22T05:12:02"
+          />
+          <Message
+            isMe={false}
+            avatar="https://sun9-21.userapi.com/c831408/v831408737/a797b/AOuegaEIaeA.jpg?ava=1"
+            text="Салам Бро! Салам Бро! Салам Бро! Салам Бро!Салам Бро!Салам Бро!"
+            date="2018-04-22T05:12:02"
+          />
+          <Message
+            isMe={false}
+            avatar="https://sun9-21.userapi.com/c831408/v831408737/a797b/AOuegaEIaeA.jpg?ava=1"
+            text="Салам Бро! Салам Бро! Салам Бро! Салам Бро!Салам Бро!Салам Бро!"
+            date="2018-04-22T05:12:02"
+          />
+          <Message
+            isMe={false}
+            avatar="https://sun9-21.userapi.com/c831408/v831408737/a797b/AOuegaEIaeA.jpg?ava=1"
+            text="Салам Бро! Салам Бро! Салам Бро! Салам Бро!Салам Бро!Салам Бро!"
+            date="2018-04-22T05:12:02"
+          />
+          <Message
+            isMe={false}
+            avatar="https://sun9-21.userapi.com/c831408/v831408737/a797b/AOuegaEIaeA.jpg?ava=1"
+            text="Салам Бро! Салам Бро! Салам Бро! Салам Бро!Салам Бро!Салам Бро!"
+            date="2018-04-22T05:12:02"
+          />
+        </div>
+        <div className="chat__dialog-input">
+          <ChatInput />
         </div>
       </div>
     </div>
@@ -273,9 +277,9 @@ const Home = () => (
       avatar="https://sun9-21.userapi.com/c831408/v831408737/a797b/AOuegaEIaeA.jpg?ava=1"
       date='2019-12-02T16:31:42+03:30'
       audio="https://notificationsounds.com/soundfiles/b5b41fac0361d157d9673ecb926af5ae/file-sounds-727-good-morning.mp3"
-    /> */}
+    />
 
-    {/* <Message 
+    <Message 
       isMe={false} 
       avatar="https://sun9-21.userapi.com/c831408/v831408737/a797b/AOuegaEIaeA.jpg?ava=1" 
       text="Салам Бро! Салам Бро! Салам Бро! Салам Бро!Салам Бро!Салам Бро!" 

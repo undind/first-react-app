@@ -1,0 +1,18 @@
+.chat-input {
+  padding: 20px;
+
+  &__smile-btn,
+  &__actions {
+    position: absolute;
+  }
+
+  i.anticon {
+    font-size: 18px;
+  }
+
+  input {
+    &:focus {
+      box-shadow: none;
+    }
+  }
+}
