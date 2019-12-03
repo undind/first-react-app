@@ -1,0 +1,1 @@
+export { defaault as axios } from './axios';
