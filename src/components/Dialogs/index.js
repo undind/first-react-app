@@ -1,5 +1,4 @@
 import React from 'react';
-import orderBy from 'lodash/orderBy';
 
 import { Input, Empty } from 'antd';
 
@@ -8,6 +7,10 @@ import { DialogItem } from '../';
 import './Dialogs.scss';
 
 const { Search } = Input;
+
+const byField = (field) => {
+  return (a, b) => a[field] > b[field] ? -1 : 1;
+}
 
 const Dialogs = ({ items, userId, onSearch, inputValue }) => (
   <div className="dialogs">
@@ -18,7 +21,7 @@ const Dialogs = ({ items, userId, onSearch, inputValue }) => (
         value={inputValue}
       />
     </div>
-    {items.length ? orderBy(items, ['created_at'], ['desc']).map((item, index) => (
+    {items.length ? items.sort(byField('created_at')).map((item, index) => (
       <DialogItem
         {...item}
         key={item._id}

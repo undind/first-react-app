@@ -18,6 +18,14 @@
       height: 62px;
       border-bottom: 1px solid #f7f7f7;
 
+      .ant-btn {
+        color: #202020; 
+        opacity: 0.6;
+        &:hover {
+          color: green;
+        }
+      }
+
       & > div {
         i {
           display: inline-block;
@@ -55,6 +63,14 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
+
+      .ant-btn {
+        color: #202020; 
+        opacity: 0.6;
+        &:hover {
+          color: green;
+        }
+      }
 
       &-center {
         text-align: center;
