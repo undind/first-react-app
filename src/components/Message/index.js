@@ -8,7 +8,7 @@ import pauseSvg from 'assets/img/pause.svg';
 
 import { convertCurrentTime } from 'utils/helpers';
 
-import { Time, IconReaded } from '../';
+import { Time, IconReaded, Avatar } from '../';
 
 import './Message.scss';
 
@@ -91,7 +91,7 @@ const Message = ({
       <div className="message__content">
         <IconReaded isMe={isMe} isReaded={isReaded} />
         <div className="message__avatar">
-          <img src="https://sun9-11.userapi.com/c855124/v855124025/c074c/M2uI9C1Xpts.jpg?ava=1" alt={`Avatar ${user.fullname}`} />
+          <Avatar user={user}/>
         </div>
         <div className="message__info">
           {(audio || text || isTyping) && (<div className="message__bubble">
