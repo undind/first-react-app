@@ -18,6 +18,15 @@
     top: 50%;
     transform: translateY(-50%);
     right: 35px;
+    display: flex;
+
+    .photos {
+      &:hover {
+        .ant-btn {
+          color: green;
+        }
+      }
+    }
   }
 
   .ant-btn {

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { Button, Input } from 'antd';
+import { UploadField } from '@navjobs/upload';
 
 import './ChatInput.scss';
 
@@ -18,10 +19,23 @@ const ChatInput = props => {
         onChange={e => setValue(e.target.value)}
       />
       <div className="chat-input__actions">
-        <Button type="link" shape="circle" icon="camera" />
-        {value ? <Button type="link" shape="circle" icon="check-circle" style={{ color: 'green' }} /> : <Button type="link" shape="circle" icon="audio" />}
-        {/* <Icon type="camera" />
-        {value ? <Icon type="check-circle" style={{ color: 'green' }} /> : <Icon type="audio" />} */}
+        <UploadField
+          onFiles={files => console.log(files)}
+          containerProps={{
+            className: 'photos'
+          }}
+          uploadProps={{
+            accept: '.jpg,.png,.jpeg,.gif,.bmp',
+            multiple: true
+          }}
+        >
+          <Button type="link" shape="circle" icon="camera" />
+        </UploadField>
+        {value ? (
+          <Button type="link" shape="circle" icon="check-circle" style={{ color: 'green' }} />
+        ) : (
+          <Button type="link" shape="circle" icon="audio" />
+          )}
       </div>
     </div>
   )
