@@ -39,15 +39,33 @@
       overflow: auto;
       .dialogs {
         height: 100%;
+
         &__item {
           padding: 10px 20px;
           margin-bottom: 0;
           cursor: pointer;
           transition: all 0.15s ease-in;
 
-          &.active,
           &:hover {
             background-color: #f3f7ff;
+          }
+
+          &--selected, &--selected:hover {
+            background-color: #3674ff;
+            border-radius: 5px;
+            color: #fff;
+
+            .dialogs__item-info-bottom {
+              p {
+                opacity: 0.9;
+              }
+            }
+
+            .dialogs__item-info-top {
+              span {
+                opacity: 0.9;
+              }
+            }
           }
         }
       }

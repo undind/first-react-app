@@ -2,16 +2,25 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { Button, Input } from 'antd';
 import { UploadField } from '@navjobs/upload';
+import { Picker } from 'emoji-mart';
 
 import './ChatInput.scss';
 
 const ChatInput = props => {
   const [value, setValue] = useState('');
+  const [emojiPickerVisible, setShowEmojiPicker] = useState('');
+
+  const toggleEmojiPicker = () => {
+    setShowEmojiPicker(!emojiPickerVisible);
+  };
 
   return (
     <div className="chat-input">
       <div className="chat-input__smile-btn">
-        <Button type="link" shape="circle" icon="smile" />
+        {emojiPickerVisible && (<div className="chat-input__emoji-picker">
+          <Picker set='apple' />
+        </div>)}
+        <Button onClick={toggleEmojiPicker} type="link" shape="circle" icon="smile" />
       </div>
       <Input
         placeholder="Введите текст сообщения..."

@@ -12,7 +12,7 @@ const byField = (field) => {
   return (a, b) => a[field] > b[field] ? -1 : 1;
 }
 
-const Dialogs = ({ items, userId, onSearch, inputValue, onSelectDialog }) => (
+const Dialogs = ({ items, userId, onSearch, inputValue, currentDialogId, onSelectDialog }) => (
   <div className="dialogs">
     <div className="dialogs__search">
       <Search
@@ -27,6 +27,7 @@ const Dialogs = ({ items, userId, onSearch, inputValue, onSelectDialog }) => (
         {...item}
         key={item._id}
         isMe={item.user._id === userId}
+        currentDialogId={currentDialogId}
       />
     )) : <Empty image={Empty.PRESENTED_IMAGE_SIMPLE} description={
       <span>

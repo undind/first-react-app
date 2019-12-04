@@ -29,6 +29,11 @@
     }
   }
 
+  &__emoji-picker {
+    position: absolute;
+    bottom: 40px;
+  }
+
   .ant-btn {
     color: #202020; 
     opacity: 0.6;
