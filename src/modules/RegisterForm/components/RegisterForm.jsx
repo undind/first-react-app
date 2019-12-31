@@ -31,7 +31,7 @@ const RegisterForm = props => {
               placeholder="E-mail"
               size="large"
               touched={touched}
-              values={values.email}
+              values={values}
               errors={errors}
               handleChange={handleChange}
               handleBlur={handleBlur}
@@ -52,8 +52,9 @@ const RegisterForm = props => {
               icon="lock"
               placeholder="Пароль"
               size="large"
+              type="password"
               touched={touched}
-              values={values.password}
+              values={values}
               errors={errors}
               handleChange={handleChange}
               handleBlur={handleBlur}
@@ -63,8 +64,9 @@ const RegisterForm = props => {
               icon="lock"
               placeholder="Повторите пароль"
               size="large"
+              type="password"
               touched={touched}
-              values={values.password_2}
+              values={values}
               errors={errors}
               handleChange={handleChange}
               handleBlur={handleBlur}
