@@ -1,12 +1,13 @@
 import { withFormik } from 'formik';
+
 import LoginForm from '../components/LoginForm';
+
 import validateForm from 'utils/validate';
+import { userActions } from 'redux/actions';
 
-import { openNotification } from 'utils/helpers';
+import store from 'redux/store'
 
-import axios from 'core/axios';
-
-export default withFormik({
+const LoginFormContainer = withFormik({
   enableReinitialize: true,
   mapPropsToValues: () => ({
     email: '',
@@ -20,22 +21,12 @@ export default withFormik({
     return errors;
   },
   handleSubmit: (values, { setSubmitting }) => {
-    return axios.post('/user/login', values).then(({ data }) => {
-      const { status, token } = data;
-
-      if (status === 'error') {
-        openNotification({
-          text: "Неверный логин или пароль",
-          type: "error",
-          title: "Ошибка при авторизации"
-        })
-      }
-
+    store.dispatch(userActions.fetchUserLogin(values)).then(() => {
       setSubmitting(false);
-    }).catch(() => {
-      setSubmitting(false);
-    })
+    });
   },
 
   displayName: 'RegisterForm',
 })(LoginForm);
+
+export default LoginFormContainer;
