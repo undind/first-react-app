@@ -1,8 +1,8 @@
 import React from 'react';
-import { Form, Icon, Input } from 'antd';
+import { Form, Icon } from 'antd';
 import { Link } from "react-router-dom";
 
-import { Button, Block } from 'components';
+import { Button, Block, FormField } from 'components';
 const success = false;
 
 const RegisterForm = props => {
@@ -25,61 +25,50 @@ const RegisterForm = props => {
       <Block>
         {!success ? (
           <Form onSubmit={handleSubmit} className="login-form">
-            <Form.Item 
-              validateStatus={!touched.email ? '' : errors.email ? 'error' : 'success'} 
-              hasFeedback
-              help={!touched.email ? '' : errors.email}
-            >
-              <Input
-                prefix={<Icon type="mail" style={{ color: 'rgba(0,0,0,.25)' }} />}
-                placeholder="E-mail"
-                size="large"
-                id="email"
-                value={values.email}
-                onChange={handleChange}
-                onBlur={handleBlur}
-              />
-            </Form.Item>
-            <Form.Item>
-              <Input
-                prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />}
-                type="password"
-                placeholder="Ваше имя"
-                size="large"
-              />
-            </Form.Item>
-            <Form.Item
-              validateStatus={!touched.password ? '' : errors.password ? 'error' : 'success'} 
-              hasFeedback
-              help={!touched.password ? '' : errors.password}
-            >
-              <Input
-                prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />}
-                id="password"
-                type="password"
-                placeholder="Пароль"
-                size="large"
-                value={values.password}
-                onChange={handleChange}
-                onBlur={handleBlur}
-              />
-            </Form.Item>
-            <Form.Item
-              validateStatus={!touched.password_2 ? '' : errors.password_2 ? 'error' : 'success'} 
-              hasFeedback
-              help={!touched.password_2 ? '' : errors.password_2}
-            >
-              <Input
-                prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />}
-                type="password"
-                id="password_2"
-                placeholder="Повторите пароль"
-                size="large"
-                value={values.password_2}
-                onChange={handleChange}
-                onBlur={handleBlur}
-              />
-            </Form.Item>
+            <FormField
+              name="email"
+              icon="mail"
+              placeholder="E-mail"
+              size="large"
+              touched={touched}
+              values={values.email}
+              errors={errors}
+              handleChange={handleChange}
+              handleBlur={handleBlur}
+            />
+            <FormField
+              name="fullname"
+              icon="user"
+              placeholder="Ваше имя"
+              size="large"
+              touched={touched}
+              values={values}
+              errors={errors}
+              handleChange={handleChange}
+              handleBlur={handleBlur}
+            />
+            <FormField
+              name="password"
+              icon="lock"
+              placeholder="Пароль"
+              size="large"
+              touched={touched}
+              values={values.password}
+              errors={errors}
+              handleChange={handleChange}
+              handleBlur={handleBlur}
+            />
+            <FormField
+              name="password_2"
+              icon="lock"
+              placeholder="Повторите пароль"
+              size="large"
+              touched={touched}
+              values={values.password_2}
+              errors={errors}
+              handleChange={handleChange}
+              handleBlur={handleBlur}
+            />
             <Form.Item>
               {isSubmitting && !isValid && <span>Ошибка!</span>}
               <Button type="primary" onClick={handleSubmit} size="large">Зарегистрироваться</Button>
