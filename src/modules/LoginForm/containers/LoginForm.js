@@ -1,6 +1,10 @@
 import { withFormik } from 'formik';
 import LoginForm from '../components/LoginForm';
-import validateForm from 'utils/validate'
+import validateForm from 'utils/validate';
+
+import { openNotification } from 'utils/helpers';
+
+import axios from 'core/axios';
 
 export default withFormik({
   enableReinitialize: true,
@@ -16,10 +20,21 @@ export default withFormik({
     return errors;
   },
   handleSubmit: (values, { setSubmitting }) => {
-    setTimeout(() => {
-      alert(JSON.stringify(values, null, 2));
+    return axios.post('/user/login', values).then(({ data }) => {
+      const { status, token } = data;
+
+      if (status === 'error') {
+        openNotification({
+          text: "Неверный логин или пароль",
+          type: "error",
+          title: "Ошибка при авторизации"
+        })
+      }
+
       setSubmitting(false);
-    }, 1000);
+    }).catch(() => {
+      setSubmitting(false);
+    })
   },
 
   displayName: 'RegisterForm',
