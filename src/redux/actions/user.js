@@ -31,7 +31,9 @@ const Actions = {
         window.axios.defaults.headers.common["token"] = token;
         window.localStorage['token'] = token;
         dispatch(Actions.fetchUserData())
-      }    
+      }
+
+      return data;
     })
   }
 };
