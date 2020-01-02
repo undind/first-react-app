@@ -3,4 +3,8 @@
   background: #fff;
   box-shadow: 0 0 25px rgba(0, 0, 0, 0.04204);
   border-radius: 3px;
+
+  & .ant-result-success {
+    padding: 0;
+  }
 }

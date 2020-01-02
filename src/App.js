@@ -8,8 +8,8 @@ const App = props => {
   const { isAuth } = props;
   return (
     <div className="wrapper">
-      <Route exact path={["/login", "/register"]} component={Auth} />
-      <Route exact path="/" render={ () => isAuth ? <Home /> : <Redirect to="/login" /> } />
+      <Route exact path={["/signin", "/signup", "/signup/verify"]} component={Auth} />
+      <Route exact path="/" render={ () => isAuth ? <Home /> : <Redirect to="/signin" /> } />
     </div>
   );
 }
