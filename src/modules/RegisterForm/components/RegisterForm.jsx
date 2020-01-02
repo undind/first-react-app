@@ -73,7 +73,7 @@ const RegisterForm = props => {
             />
             <Form.Item>
               {isSubmitting && !isValid && <span>Ошибка!</span>}
-              <Button type="primary" onClick={handleSubmit} size="large">Зарегистрироваться</Button>
+              <Button type="primary" disabled={isSubmitting} onClick={handleSubmit} size="large">Зарегистрироваться</Button>
             </Form.Item>
             <Link className="auth__register-link" to="/login">Войти в аккаунт</Link>
           </Form>
