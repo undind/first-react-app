@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
-import { Result } from 'antd';
+import { Result, Button } from 'antd';
 import { Block } from 'components';
 
 import { userApi } from 'utils/api';
@@ -29,7 +29,7 @@ const renderTextInfo = ({ hash, verified }) => {
   }
 };
 
-const CheckVerifyEmail = ({ location }) => {
+const CheckVerifyEmail = ({ location, history }) => {
   const [verified, setVerified] = useState(false);
   const hash = location.search.split('hash=')[1];
   const info = renderTextInfo({ hash, verified })
@@ -50,6 +50,14 @@ const CheckVerifyEmail = ({ location }) => {
         status={info.status}
         title={info.title}
         subTitle={info.message}
+        extra={
+          info.status === 'success' &&
+          verified && (
+            <Button type="primary" onClick={() => history.push('/signin')}>
+              Войти
+            </Button>
+          )
+        }
       />
     </Block>
   );
