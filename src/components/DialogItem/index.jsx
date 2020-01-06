@@ -23,7 +23,7 @@ const DialogItem = ({ _id, isMe, partner, onSelect, currentDialogId, lastMessage
       onClick={onSelect.bind(this, _id)}
     >
       <div className="dialogs__item-avatar">
-        <Avatar user={lastMessage.user}/>
+        <Avatar user={partner}/>
       </div>
       <div className="dialogs__item-info">
         <div className="dialogs__item-info-top">

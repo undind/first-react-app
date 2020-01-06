@@ -9,10 +9,18 @@ import './ChatInput.scss';
 const ChatInput = props => {
   const [value, setValue] = useState('');
   const [emojiPickerVisible, setShowEmojiPicker] = useState('');
+  const { onSendMessage, currentDialogId } = props;
 
   const toggleEmojiPicker = () => {
     setShowEmojiPicker(!emojiPickerVisible);
   };
+
+  const handleSendMessage = (e) => {
+    if (e.keyCode === 13) {
+      onSendMessage(value, currentDialogId);
+      setValue('');
+    }
+  }
 
   return (
     <div className="chat-input">
@@ -26,6 +34,8 @@ const ChatInput = props => {
         placeholder="Введите текст сообщения..."
         size="large"
         onChange={e => setValue(e.target.value)}
+        onKeyUp={handleSendMessage}
+        value={value}
       />
       <div className="chat-input__actions">
         <UploadField
