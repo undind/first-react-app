@@ -10,6 +10,9 @@ import store from 'redux/store';
 import 'emoji-mart/css/emoji-mart.css';
 
 import App from './App';
+import { userActions } from 'redux/actions';
+
+store.dispatch(userActions.fetchUserData());
 
 ReactDOM.render(
   <Provider store={store}>

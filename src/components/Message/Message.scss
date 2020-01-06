@@ -86,12 +86,16 @@
     }
 
     #{$self}__avatar {
-      img {
+      margin-right: 0;
+      margin-left: 13px;
+      margin-bottom: 5px;
+
+      .avatar--symbol {
         margin-right: 0;
-        margin-left: 13px;
-        margin-bottom: 15px;
+        margin-bottom: 0;
       }
     }
+    
 
     #{$self}__bubble {
       background: #fff;

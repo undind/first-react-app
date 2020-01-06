@@ -20,11 +20,11 @@ const Dialogs = ({ fetchDialogs, currentDialogId, setCurrentDialogId, items, use
     } else {
       setFiltredItems(items);
     }
-  }, [items, fetchDialogs]);
 
-  socket.on("SERVER:DIALOG_CREATED", (data) => {
-    fetchDialogs();
-  })
+    socket.on("SERVER:DIALOG_CREATED", (data) => {
+      fetchDialogs();
+    })
+  }, [items, fetchDialogs]);
 
   return (
     <BaseDialogs 
