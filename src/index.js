@@ -6,6 +6,7 @@ import { Provider } from 'react-redux';
 import './styles/index.scss';
 
 import store from 'redux/store';
+
 import 'emoji-mart/css/emoji-mart.css';
 
 import App from './App';

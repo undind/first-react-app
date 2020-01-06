@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 
 import { dialogsActions } from 'redux/actions';
 import { Dialogs as BaseDialogs } from 'components';
+import socket from 'core/socket';
 
 const Dialogs = ({ fetchDialogs, currentDialogId, setCurrentDialogId, items, userId }) => {
   const [inputValue, setValue] = useState('');
@@ -20,6 +21,10 @@ const Dialogs = ({ fetchDialogs, currentDialogId, setCurrentDialogId, items, use
       setFiltredItems(items);
     }
   }, [items, fetchDialogs]);
+
+  socket.on("SERVER:DIALOG_CREATED", (data) => {
+    fetchDialogs();
+  })
 
   return (
     <BaseDialogs 
