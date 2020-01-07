@@ -6,7 +6,7 @@ import socket from 'core/socket';
 
 import { Messages as BaseMessages } from 'components';
 
-const Dialogs = ({ currentDialogId, addMessage, fetchMessages, items, user, isLoading }) => {
+const Dialogs = ({ currentDialogId, addMessage, fetchMessages, items, user, isLoading, removeMessageById }) => {
   const messagesRef = useRef(null);
   
   const onNewMessage = (data) => {
@@ -36,6 +36,7 @@ const Dialogs = ({ currentDialogId, addMessage, fetchMessages, items, user, isLo
       blockRef={messagesRef}
       items={items}
       isLoading={isLoading}
+      onRemoveMessage={removeMessageById}
     />
   );
 };

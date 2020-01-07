@@ -3,10 +3,20 @@
 .message {
   $self: &;
 
-  &__icon-readed {
-    position: absolute;
-    left: -31px;
-    bottom: 25px;
+  &__icon {
+    &-readed {
+      position: absolute;
+      left: -31px;
+      bottom: 25px;
+    }
+
+    &-actions {
+      display: none;
+      transform: rotate(90deg);
+      position: absolute;
+      left: 20px;
+      top: -10px;
+    }
   }
 
   &__content {
@@ -83,6 +93,20 @@
 
     #{$self}__content{
       flex-direction: row-reverse;
+
+      &:hover {
+        #{$self}__icon-actions {
+          display: block;
+        }
+      }
+    }
+
+    #{$self}__icon-actions {
+      display: none;
+      transform: rotate(90deg);
+      position: absolute;
+      left: -31px;
+      top: -5px;
     }
 
     #{$self}__avatar {
