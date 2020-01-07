@@ -12,8 +12,8 @@ export default ({ isAuth, values, errors }) => {
       }
     },
     password: (value) => {
-      if (!value) {
-        errors.password = 'Введите пароль';
+      if (!value || value.length < 3) {
+        errors.password = 'Введите пароль. Не менее трех символов';
       } else if (
         !isAuth && !/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.{8,})/i.test(
           value

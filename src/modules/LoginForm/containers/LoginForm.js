@@ -22,11 +22,11 @@ const LoginFormContainer = withFormik({
   },
   handleSubmit: (values, { setSubmitting, props }) => {
     store.dispatch(userActions.fetchUserLogin(values)).then(({ status }) => {
-      if (status === 'success') {
-        props.history.push('/')
-      }
-      
       setSubmitting(false);
+      
+      if (status === 'success') {
+        props.history.push('/');
+      }
     }).catch(() => {
       setSubmitting(false);
     });
