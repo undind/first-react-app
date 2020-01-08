@@ -12,10 +12,6 @@
 
     &-actions {
       display: none;
-      transform: rotate(90deg);
-      position: absolute;
-      left: 20px;
-      top: -10px;
     }
   }
 
@@ -24,12 +20,6 @@
     max-width: 440px;
     margin-bottom: 30px;
     position: relative;
-
-    &:hover {
-      #{$self}__icon-actions {
-        display: block;
-      }
-    }
   }
 
   &__avatar {

@@ -22,11 +22,15 @@ const ChatInput = props => {
     }
   }
 
+  const addEmoji = ({ colons }) => {
+    setValue((value + ' ' + colons).trim())
+  }
+
   return (
     <div className="chat-input">
       <div className="chat-input__smile-btn">
         {emojiPickerVisible && (<div className="chat-input__emoji-picker">
-          <Picker set='apple' />
+          <Picker set='apple' onSelect={(emojiTag) => addEmoji(emojiTag)} />
         </div>)}
         <Button onClick={toggleEmojiPicker} type="link" shape="circle" icon="smile" />
       </div>
