@@ -39,7 +39,7 @@ const Actions = {
       return data;
       
     }).catch(({ response }) => {
-      if (response.status === 403) {
+      if (response.status === 403 || response.status === 404) {
         openNotification({
           title: 'Ошибка!',
           text: 'Неверный логин или пароль!',

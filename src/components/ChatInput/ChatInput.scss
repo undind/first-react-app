@@ -1,5 +1,5 @@
 .chat-input {
-  padding: 20px;
+  padding: 5px 10px 5px 10px;
   position: relative;
 
   &__smile-btn,
@@ -11,13 +11,13 @@
   &__smile-btn {
     top: 50%;
     transform: translateY(-50%);
-    left: 30px;
+    left: 10px;
   }
 
   &__actions {
     top: 50%;
     transform: translateY(-50%);
-    right: 35px;
+    right: 25px;
     display: flex;
 
     .photos {
@@ -57,5 +57,9 @@
     &:focus {
       box-shadow: none;
     }
+  }
+
+  textarea.ant-input {
+    padding: 14px 55px 0 30px;
   }
 }

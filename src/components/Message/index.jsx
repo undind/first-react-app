@@ -1,7 +1,9 @@
 import React, { useState, useRef, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import { Emoji } from 'emoji-mart';
 import { Popover, Button } from 'antd';
+import reactStringReplace from 'react-string-replace';
 
 import waveSvg from 'assets/img/wave.svg';
 import playSvg from 'assets/img/play.svg';
@@ -107,8 +109,13 @@ const Message = ({
           <Avatar user={user}/>
         </div>
         <div className="message__info">
-          {(audio || text || isTyping) && (<div className="message__bubble">
-            {text && <p className="message__text">{text}</p>}
+          {(audio || text || isTyping) && ( <div className="message__bubble">
+            {text && (
+              <p className="message__text">
+                {reactStringReplace(text, /:(.+?):/g, (match, i) => (
+                  <Emoji key={i} emoji={match} set="apple" size={16} />
+                ))}
+              </p>)}
             {isTyping && (
               <div className="message__typing">
                 <span></span>
@@ -117,7 +124,7 @@ const Message = ({
               </div>
             )}
             {audio && <MessageAudio  audioSrc={audio}/>}
-          </div>)}
+          </div> )}
           {attachments && (<div className="message__attachments">
             {attachments.map((item, index) => (
               <div key={index} className="message__attachments-item">
