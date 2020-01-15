@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { Button, Input } from 'antd';
 import { UploadField } from '@navjobs/upload';
@@ -28,6 +28,24 @@ const ChatInput = props => {
     setValue((value + ' ' + colons).trim())
   }
 
+  const handleOutsideClick = (el, e) => {
+    if (el && !el.contains(e.target)) {
+      setShowEmojiPicker(false)
+    }
+  }
+
+  useEffect(() => {
+    const el = document.querySelector('.chat-input__smile-btn');
+    document.addEventListener('click', handleOutsideClick.bind(this, el))
+    return () => {
+      document.removeEventListener('click', handleOutsideClick.bind(this, el))
+    }
+  }, [])
+
+  if (!currentDialogId) {
+    return null;
+  }
+
   return (
     <div className="chat-input">
       <div className="chat-input__smile-btn">
@@ -39,7 +57,7 @@ const ChatInput = props => {
       <TextArea
         placeholder="Введите текст сообщения..."
         size="large"
-        autoSize={{ minRows: 2, maxRows: 2 }}
+        autoSize={{ minRows: 1.5, maxRows: 2 }}
         onChange={e => setValue(e.target.value)}
         onKeyUp={handleSendMessage}
         value={value}

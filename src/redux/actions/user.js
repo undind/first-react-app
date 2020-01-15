@@ -14,6 +14,7 @@ const Actions = {
     userApi.getMe().then(({ data }) => {
       dispatch(Actions.setUserData(data));
     }).catch((err) => {
+      console.log(err)
       if (err.response.status === 403) {
         dispatch(Actions.setIsAuth(false));
         delete window.localStorage.token;

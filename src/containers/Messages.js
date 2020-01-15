@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 
 import { messagesActions } from 'redux/actions';
 import socket from 'core/socket';
+import { Empty } from 'antd';
 
 import { Messages as BaseMessages } from 'components';
 
@@ -27,9 +28,17 @@ const Dialogs = ({ currentDialogId, addMessage, fetchMessages, items, user, isLo
   }, [currentDialogId, fetchMessages]);
 
   useEffect(() => {
-    messagesRef.current.scrollTo(0, messagesRef.current.scrollHeight);
+    if (currentDialogId) {
+      messagesRef.current.scrollTo(0, messagesRef.current.scrollHeight);
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [items]);
 
+  if (!currentDialogId) {
+    return <Empty description="Откройте или продолжите диалог" />;
+  }
+
+  
   return (
     <BaseMessages
       user={user}

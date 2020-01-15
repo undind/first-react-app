@@ -6,7 +6,7 @@ import { Dialogs as BaseDialogs } from 'components';
 
 import socket from 'core/socket';
 
-const Dialogs = ({ fetchDialogs, currentDialogId, setCurrentDialogId, items, userId }) => {
+const Dialogs = ({ fetchDialogs, currentDialogId, items, userId }) => {
   const [inputValue, setValue] = useState('');
   const [filtered, setFiltredItems] = useState(Array.from(items));
 
@@ -16,10 +16,6 @@ const Dialogs = ({ fetchDialogs, currentDialogId, setCurrentDialogId, items, use
     ));
     setValue(value);
   };
-
-  const onNewDialog = () => {
-    fetchDialogs();
-  }
 
   useEffect(() => {
     if (items.length) {
@@ -36,10 +32,12 @@ const Dialogs = ({ fetchDialogs, currentDialogId, setCurrentDialogId, items, use
     //   setFiltredItems(items);
     // }
 
-    socket.on("SERVER:DIALOG_CREATED", onNewDialog);
+    socket.on("SERVER:DIALOG_CREATED", fetchDialogs);
+    socket.on('SERVER:NEW_MESSAGE', fetchDialogs);
 
     return () => {
-      socket.removeListener("SERVER:DIALOG_CREATED", onNewDialog)
+      socket.removeListener("SERVER:DIALOG_CREATED", fetchDialogs);
+      socket.removeListener('SERVER:NEW_MESSAGE', fetchDialogs);
     }
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -50,7 +48,6 @@ const Dialogs = ({ fetchDialogs, currentDialogId, setCurrentDialogId, items, use
       items={filtered} 
       onSearch={onChangeInput}
       inputValue={inputValue}
-      onSelectDialog={setCurrentDialogId}
       currentDialogId={currentDialogId}
     />
   );

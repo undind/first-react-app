@@ -12,7 +12,7 @@ const byField = (field) => {
   return (a, b) => a[field] > b[field] ? -1 : 1;
 }
 
-const Dialogs = ({ items, userId, onSearch, inputValue, currentDialogId, onSelectDialog }) => (
+const Dialogs = ({ items, userId, onSearch, inputValue, currentDialogId }) => (
   <div className="dialogs">
     <div className="dialogs__search">
       <Search
@@ -21,9 +21,8 @@ const Dialogs = ({ items, userId, onSearch, inputValue, currentDialogId, onSelec
         value={inputValue}
       />
     </div>
-    {items.length ? items.sort(byField('created_at')).map((item, index) => (
+    {items.length ? items.sort(byField('created_at')).map((item) => (
       <DialogItem
-        onSelect={onSelectDialog}
         {...item}
         key={item._id}
         isMe={item.author._id === userId}
