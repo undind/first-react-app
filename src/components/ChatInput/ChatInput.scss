@@ -29,6 +29,16 @@
     }
   }
 
+  &__attachments {
+    position: absolute;
+    bottom: 50px;
+
+    .ant-upload-list {
+      display: flex;
+      flex-wrap: wrap-reverse;
+    }
+  }
+
   &__emoji-picker {
     position: absolute;
     bottom: 40px;

@@ -4,6 +4,8 @@ import { Button, Input } from 'antd';
 import { UploadField } from '@navjobs/upload';
 import { Picker } from 'emoji-mart';
 
+import { UploadFiles } from "components";
+
 import './ChatInput.scss';
 
 const { TextArea } = Input;
@@ -80,6 +82,9 @@ const ChatInput = props => {
         ) : (
           <Button type="link" shape="circle" icon="audio" />
           )}
+      </div>
+      <div className="chat-input__attachments">
+        <UploadFiles />
       </div>
     </div>
   )

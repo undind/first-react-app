@@ -79,7 +79,7 @@ const Message = ({
   text,
   date,
   isMe,
-  isReaded,
+  readed,
   audio,
   attachments,
   isTyping,
@@ -93,7 +93,7 @@ const Message = ({
       'message--image': attachments && attachments.length === 1,
     })}>
       <div className="message__content">
-        <IconReaded isMe={isMe} isReaded={isReaded} />
+        <IconReaded isMe={isMe} isReaded={readed} />
         <Popover
           content={
             <div>
