@@ -9,12 +9,51 @@ import { ChatInput as ChatInputBase } from 'components';
 const ChatInput = ({
   fetchSendMessage, currentDialogId
 }) => {
+  window.navigator.getUserMedia =
+    window.navigator.getUserMedia ||
+    window.navigator.mozGetUserMedia ||
+    window.navigator.msGetUserMedia ||
+    window.navigator.webkitGetUserMedia;
+  
   const [value, setValue] = useState('');
+  const [isRecording, setIsRecording] = useState('');
+  const [mediaRecorder, setMediaRecorder] = useState(null);
   const [attachments, setAttachments] = useState([]);
   const [emojiPickerVisible, setShowEmojiPicker] = useState('');
+  const [isLoading, setLoading] = useState(false);
 
   const toggleEmojiPicker = () => {
     setShowEmojiPicker(!emojiPickerVisible);
+  };
+
+  const onRecord = () => {
+    if (navigator.getUserMedia) {
+      navigator.getUserMedia({ audio: true }, onRecording, onError);
+    }
+  }
+
+  const onRecording = stream => {
+    const recorder = new MediaRecorder(stream);
+    setMediaRecorder(recorder);
+
+    recorder.start();
+
+    recorder.onstart = () => {
+      setIsRecording(true);
+    };
+
+    recorder.onstop = () => {
+      setIsRecording(false);
+    };
+
+    recorder.ondataavailable = e => {
+      const file = new File([e.data], 'audio.webm');
+      setLoading(true);
+    };
+  };
+
+  const onError = err => {
+    console.log('The following error occured: ' + err);
   };
 
   const handleOutsideClick = (el, e) => {
@@ -33,6 +72,14 @@ const ChatInput = ({
     if (e.keyCode === 13) {
       sendMessage();
     }
+  }
+
+  const onStartRecord = () => {
+    setIsRecording(true)
+  }
+
+  const onStopRecording = () => {
+    setIsRecording(false)
   }
 
   const addEmoji = ({ colons }) => {
@@ -96,6 +143,9 @@ const ChatInput = ({
       sendMessage={sendMessage}
       attachments={attachments}
       onSelectFiles={onSelectFiles}
+      isRecording={isRecording}
+      onRecord={onRecord}
+      onStopRecording={onStopRecording}
     />
   )
 };

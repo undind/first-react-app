@@ -20,7 +20,10 @@ const ChatInput = props => {
     toggleEmojiPicker,
     addEmoji,
     attachments,
-    onSelectFiles
+    onSelectFiles,
+    onRecord,
+    isRecording,
+    onStopRecording
   } = props;
 
   return (
@@ -31,14 +34,23 @@ const ChatInput = props => {
         </div>)}
         <Button onClick={toggleEmojiPicker} type="link" shape="circle" icon="smile" />
       </div>
-      <TextArea
-        placeholder="Введите текст сообщения..."
-        size="large"
-        autoSize={{ minRows: 1.5, maxRows: 2 }}
-        onChange={e => setValue(e.target.value)}
-        onKeyUp={handleSendMessage}
-        value={value}
-      />
+      {isRecording ? 
+        (
+        <div className="chat-input__record-status">
+          <i className="chat-input__record-status-buble"></i>
+          Recording...
+          <Button className="stop-record" onClick={onStopRecording} type="link" shape="circle" icon="stop" />
+        </div>
+        ) : (
+          <TextArea
+          placeholder="Введите текст сообщения..."
+          size="large"
+          autoSize={{ minRows: 1.5, maxRows: 2 }}
+          onChange={e => setValue(e.target.value)}
+          onKeyUp={handleSendMessage}
+          value={value}
+        />
+        )}
       <div className="chat-input__actions">
         <UploadField
           onFiles={onSelectFiles}
@@ -52,10 +64,12 @@ const ChatInput = props => {
         >
           <Button type="link" shape="circle" icon="camera" />
         </UploadField>
-        {value ? (
+        {isRecording || value ? (
           <Button onClick={sendMessage} type="link" shape="circle" icon="check-circle" style={{ color: 'green' }} />
         ) : (
-          <Button type="link" shape="circle" icon="audio" />
+          <div className="chat-input__record-btn">
+            <Button onClick={onRecord} type="link" shape="circle" icon="audio" />  
+          </div>
           )}
       </div>
       <div className="chat-input__attachments">
