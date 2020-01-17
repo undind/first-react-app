@@ -22,7 +22,7 @@ const Dialogs = ({ fetchDialogs, currentDialogId, items, userId }) => {
       onChangeInput();
     }
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [items,]);
+  }, [items]);
 
   useEffect(() => {
     fetchDialogs();

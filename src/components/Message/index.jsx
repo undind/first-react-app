@@ -90,7 +90,7 @@ const Message = ({
       'message--isme': isMe,
       'message--is-typing': isTyping,
       'message--is-audio': audio,
-      'message--image': attachments && attachments.length === 1,
+      'message--image': attachments && attachments.length === 1 && !text,
     })}>
       <div className="message__content">
         <IconReaded isMe={isMe} isReaded={readed} />

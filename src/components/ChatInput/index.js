@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { Button, Input } from 'antd';
 import { UploadField } from '@navjobs/upload';
@@ -11,42 +11,17 @@ import './ChatInput.scss';
 const { TextArea } = Input;
 
 const ChatInput = props => {
-  const [value, setValue] = useState('');
-  const [emojiPickerVisible, setShowEmojiPicker] = useState('');
-  const { onSendMessage, currentDialogId } = props;
-
-  const toggleEmojiPicker = () => {
-    setShowEmojiPicker(!emojiPickerVisible);
-  };
-
-  const handleSendMessage = (e) => {
-    if (e.keyCode === 13) {
-      onSendMessage(value, currentDialogId);
-      setValue('');
-    }
-  }
-
-  const addEmoji = ({ colons }) => {
-    setValue((value + ' ' + colons).trim())
-  }
-
-  const handleOutsideClick = (el, e) => {
-    if (el && !el.contains(e.target)) {
-      setShowEmojiPicker(false)
-    }
-  }
-
-  useEffect(() => {
-    const el = document.querySelector('.chat-input__smile-btn');
-    document.addEventListener('click', handleOutsideClick.bind(this, el))
-    return () => {
-      document.removeEventListener('click', handleOutsideClick.bind(this, el))
-    }
-  }, [])
-
-  if (!currentDialogId) {
-    return null;
-  }
+  const { 
+    handleSendMessage,
+    sendMessage,
+    value, 
+    setValue, 
+    emojiPickerVisible,
+    toggleEmojiPicker,
+    addEmoji,
+    attachments,
+    onSelectFiles
+  } = props;
 
   return (
     <div className="chat-input">
@@ -66,7 +41,7 @@ const ChatInput = props => {
       />
       <div className="chat-input__actions">
         <UploadField
-          onFiles={files => console.log(files)}
+          onFiles={onSelectFiles}
           containerProps={{
             className: 'photos'
           }}
@@ -78,13 +53,13 @@ const ChatInput = props => {
           <Button type="link" shape="circle" icon="camera" />
         </UploadField>
         {value ? (
-          <Button type="link" shape="circle" icon="check-circle" style={{ color: 'green' }} />
+          <Button onClick={sendMessage} type="link" shape="circle" icon="check-circle" style={{ color: 'green' }} />
         ) : (
           <Button type="link" shape="circle" icon="audio" />
           )}
       </div>
       <div className="chat-input__attachments">
-        <UploadFiles />
+        <UploadFiles attachments={attachments} />
       </div>
     </div>
   )

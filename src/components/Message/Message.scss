@@ -39,7 +39,8 @@
 
   &__info {
     display: flex;
-    flex-direction: column;
+    flex-direction: row-reverse;
+    align-items: flex-end;
   }
 
   &__attachments {
@@ -52,8 +53,8 @@
       cursor: pointer;
 
       img {
-        width: 45px;
-        height: 45px;
+        width: 60px;
+        height: 60px;
         border-radius: 4px;
       }
     }
@@ -139,8 +140,8 @@
     #{$self}__attachments {
       &-item {
         img {
-          width: 150px;
-          height: 150px;
+          width: 100px;
+          height: 100px;
         }
       }
     }
