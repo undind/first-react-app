@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { connect } from 'react-redux';
+import find from 'lodash/find';
 
 import { messagesActions } from 'redux/actions';
 import socket from 'core/socket';
@@ -7,8 +8,10 @@ import { Empty } from 'antd';
 
 import { Messages as BaseMessages } from 'components';
 
-const Dialogs = ({ currentDialogId, addMessage, fetchMessages, items, user, isLoading, removeMessageById }) => {
+const Dialogs = ({ currentDialog, addMessage, fetchMessages, items, user, isLoading, removeMessageById, attachments }) => {
   const [previewImage, setPreviewImage] = useState(null);
+  const [isTyping, setIsTyping] = useState(false);
+  let typingTimeoutId = null;
   
   const messagesRef = useRef(null);
   
@@ -16,9 +19,22 @@ const Dialogs = ({ currentDialogId, addMessage, fetchMessages, items, user, isLo
     addMessage(data);
   }
 
+  const toggleIsTyping = () => {
+    setIsTyping(true);
+    clearInterval(typingTimeoutId);
+    typingTimeoutId = setTimeout(() => {
+      setIsTyping(false);
+    }, 3000);
+  };
+
   useEffect(() => {
-    if (currentDialogId) {
-      fetchMessages(currentDialogId);
+    socket.on('DIALOGS:TYPING', toggleIsTyping);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  useEffect(() => {
+    if (currentDialog) {
+      fetchMessages(currentDialog._id);
     }
 
     socket.on("SERVER:NEW_MESSAGE", onNewMessage)
@@ -27,16 +43,17 @@ const Dialogs = ({ currentDialogId, addMessage, fetchMessages, items, user, isLo
       socket.removeListener("SERVER:NEW_MESSAGE", onNewMessage)
     }
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [currentDialogId, fetchMessages]);
+  }, [currentDialog, fetchMessages]);
 
   useEffect(() => {
-    if (currentDialogId) {
+    if (currentDialog) {
+      console.log(messagesRef.current.scrollHeight)
       messagesRef.current.scrollTo(0, messagesRef.current.scrollHeight);
     }
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [items]);
+  }, [items, isTyping]);
 
-  if (!currentDialogId) {
+  if (!currentDialog) {
     return <Empty description="Откройте или продолжите диалог" />;
   }
 
@@ -50,14 +67,20 @@ const Dialogs = ({ currentDialogId, addMessage, fetchMessages, items, user, isLo
       onRemoveMessage={removeMessageById}
       setPreviewImage={setPreviewImage}
       previewImage={previewImage}
+      isTyping={isTyping}
+      partner={
+        user._id !== currentDialog.partner._id ? currentDialog.author : currentDialog.partner
+      }
     />
   );
 };
 
-export default connect(({ dialogs, messages, user }) => (
-  { currentDialogId: dialogs.currentDialogId, 
+export default connect(({ dialogs, messages, user, attachments }) => (
+  { 
+    currentDialog: find(dialogs.items, { _id: dialogs.currentDialogId }), 
     items: messages.items,
     isLoading: messages.isLoading,
+    attachments: attachments.items,
     user: user.data
   }
 ), messagesActions)(Dialogs);

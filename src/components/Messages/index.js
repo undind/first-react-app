@@ -7,7 +7,7 @@ import { Message } from 'components';
 
 import './Messages.scss';
 
-const Messages = ({ blockRef, isLoading, items, user, onRemoveMessage, previewImage, setPreviewImage }) => {
+const Messages = ({ blockRef, isLoading, items, user, onRemoveMessage, previewImage, setPreviewImage, isTyping, partner }) => {
   return (
     <div ref={blockRef} className={classNames('messages', {'messages--loading': isLoading})}>
       {isLoading && !user ? (
@@ -23,6 +23,7 @@ const Messages = ({ blockRef, isLoading, items, user, onRemoveMessage, previewIm
       ) : (
         <Empty description="Нет сообщений..." />
       )}
+      {isTyping && <Message isTyping={true} user={partner} />}
       <Modal visible={!!previewImage} onCancel={() => setPreviewImage(null)} footer={null}>
         <img src={previewImage} style={{ width: '100%' }} alt="Preview" />
       </Modal>

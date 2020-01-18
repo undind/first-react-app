@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
+import socket from 'core/socket';
 
 import { messagesActions, attachmentsActions } from 'redux/actions';
 import { filesApi } from 'utils/api';
@@ -97,6 +98,8 @@ const ChatInput = (props) => {
   };
 
   const handleSendMessage = (e) => {
+    socket.emit('DIALOGS:TYPING', { dialogId: currentDialogId, user });
+    
     if (e.keyCode === 13) {
       sendMessage();
     }
@@ -171,6 +174,7 @@ const ChatInput = (props) => {
       onRecord={onRecord}
       onStopRecording={onStopRecording}
       isLoading={isLoading}
+      removeAttachment={removeAttachment}
     />
   )
 };

@@ -24,6 +24,7 @@ const ChatInput = props => {
     onRecord,
     isRecording,
     onStopRecording,
+    removeAttachment,
     isLoading
   } = props;
 
@@ -76,7 +77,7 @@ const ChatInput = props => {
           )}
       </div>
       {attachments.length > 0 && <div className="chat-input__attachments">
-        <UploadFiles attachments={attachments} />
+        <UploadFiles removeAttachment={removeAttachment} attachments={attachments} />
       </div>}
     </div>
   )

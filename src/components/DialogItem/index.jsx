@@ -16,6 +16,17 @@ const getMessageTime = created_at => {
   }
 }
 
+const renderLastMessage = (message, userId) => {
+  let text = '';
+  if (!message.text && message.attachments.length) {
+    text = 'прикрепленный файл';
+  } else {
+    text = message.text;
+  }
+
+  return `${message.user._id === userId ? 'Вы: ' : ''}${text}`;
+};
+
 const DialogItem = ({ _id, isMe, partner, currentDialogId, lastMessage, userId }) => (
   <Link to={`/dialog/${_id}`}>
     <div 
@@ -33,7 +44,7 @@ const DialogItem = ({ _id, isMe, partner, currentDialogId, lastMessage, userId }
         </div>
         <div className="dialogs__item-info-bottom">
           <p>
-            {lastMessage.user._id === userId ? `Вы: ${lastMessage.text}` : lastMessage.text}
+            {renderLastMessage(lastMessage, userId)}
           </p>
           {isMe && <IconReaded isMe={isMe} isReaded={lastMessage.readed}/>}
           {lastMessage.readed > 0 && <div className="dialogs__item-unread-count">
