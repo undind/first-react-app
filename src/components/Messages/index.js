@@ -10,7 +10,7 @@ import './Messages.scss';
 const Messages = ({ blockRef, isLoading, items, user, onRemoveMessage, previewImage, setPreviewImage }) => {
   return (
     <div ref={blockRef} className={classNames('messages', {'messages--loading': isLoading})}>
-      {isLoading ? (
+      {isLoading && !user ? (
         <Spin tip="Загрузка сообщений..." size="large"></Spin>
       ) : items.length ? (
         items.map(item => 

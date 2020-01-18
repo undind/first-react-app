@@ -26,6 +26,7 @@ const Dialogs = ({ items, userId, onSearch, inputValue, currentDialogId }) => (
         {...item}
         key={item._id}
         isMe={item.author._id === userId}
+        userId={userId}
         currentDialogId={currentDialogId}
       />
     )) : <Empty image={Empty.PRESENTED_IMAGE_SIMPLE} description={

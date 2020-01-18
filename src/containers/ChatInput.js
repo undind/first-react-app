@@ -1,14 +1,21 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 
-import { messagesActions } from 'redux/actions';
+import { messagesActions, attachmentsActions } from 'redux/actions';
 import { filesApi } from 'utils/api';
 
 import { ChatInput as ChatInputBase } from 'components';
 
-const ChatInput = ({
-  fetchSendMessage, currentDialogId
-}) => {
+const ChatInput = (props) => {
+  const {
+    dialogs: { currentDialogId },
+    attachments,
+    fetchSendMessage,
+    setAttachments,
+    removeAttachment,
+    user,
+  } = props;
+
   window.navigator.getUserMedia =
     window.navigator.getUserMedia ||
     window.navigator.mozGetUserMedia ||
@@ -18,7 +25,6 @@ const ChatInput = ({
   const [value, setValue] = useState('');
   const [isRecording, setIsRecording] = useState('');
   const [mediaRecorder, setMediaRecorder] = useState(null);
-  const [attachments, setAttachments] = useState([]);
   const [emojiPickerVisible, setShowEmojiPicker] = useState('');
   const [isLoading, setLoading] = useState(false);
 
@@ -52,8 +58,8 @@ const ChatInput = ({
 
       filesApi.upload(file).then(({ data }) => {
         sendAudio(data.file._id).then(() => {
-          setLoading(false);
-        });
+          setLoading(false)
+        })
       });
     };
   };
@@ -164,8 +170,13 @@ const ChatInput = ({
       isRecording={isRecording}
       onRecord={onRecord}
       onStopRecording={onStopRecording}
+      isLoading={isLoading}
     />
   )
 };
 
-export default connect(({ dialogs }) => dialogs, messagesActions)(ChatInput);
+export default connect(({ dialogs, attachments, user }) => ({
+  dialogs, 
+  attachments: attachments.items,
+  user: user.data
+}), { ...messagesActions, ...attachmentsActions })(ChatInput);

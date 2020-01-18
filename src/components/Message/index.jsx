@@ -74,13 +74,11 @@ const MessageAudio = ({ audioSrc }) => {
 };
 
 const Message = ({
-  avatar,
   user,
   text,
   date,
   isMe,
   readed,
-  audio,
   attachments,
   isTyping,
   onRemoveMessage,
@@ -129,7 +127,7 @@ const Message = ({
           <Avatar user={user}/>
         </div>
         <div className="message__info">
-          {(audio || text || isTyping) && ( <div className="message__bubble">
+          {(text || isTyping) && ( <div className="message__bubble">
             {text && (
               <p className="message__text">
                 {reactStringReplace(text, /:(.+?):/g, (match, i) => (
@@ -143,7 +141,7 @@ const Message = ({
                 <span></span>
               </div>
             )}
-            {audio && <MessageAudio  audioSrc={audio}/>}
+            {false && <MessageAudio audioSrc={null} />}
           </div> )}
           {attachments && (
             <div className="message__attachments">

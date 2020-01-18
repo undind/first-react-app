@@ -186,17 +186,26 @@
       overflow: hidden;
     }
 
+    #{$self}__attachments {
+      background:#3674ff;
+      padding: 10px;
+      width: 250px;
+      border-radius: 12px 12px 0 12px;
+    }
+
     #{$self}__info {
       width: 100%;
     }
 
     #{$self}__audio {
+      flex: 1;
       &-info {
         display: flex;
         align-items: center;
         justify-content: space-between;
         position: relative;
       }
+
       &-btn {
         button {
           width: 28px;
@@ -226,6 +235,7 @@
         top: 0;
         background-color: #418fff;
         transition: width 0.5s ease;
+        border-radius: 12px 0 0 0;
       }
     }
   }
