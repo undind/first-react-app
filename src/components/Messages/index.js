@@ -1,22 +1,31 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Empty, Spin } from 'antd';
+import { Empty, Spin, Modal } from 'antd';
 import classNames from 'classnames';
 
 import { Message } from 'components';
 
 import './Messages.scss';
 
-const Messages = ({ blockRef, isLoading, items, user, onRemoveMessage }) => {
+const Messages = ({ blockRef, isLoading, items, user, onRemoveMessage, previewImage, setPreviewImage }) => {
   return (
     <div ref={blockRef} className={classNames('messages', {'messages--loading': isLoading})}>
       {isLoading ? (
         <Spin tip="Загрузка сообщений..." size="large"></Spin>
       ) : items.length ? (
-        items.map(item => <Message {...item} key={item._id} isMe={user._id === item.user._id} onRemoveMessage={onRemoveMessage.bind(this, item._id)} />)
+        items.map(item => 
+          (<Message 
+            {...item} key={item._id} 
+            isMe={user._id === item.user._id}
+            onRemoveMessage={onRemoveMessage.bind(this, item._id)}
+            setPreviewImage={setPreviewImage}
+           />))
       ) : (
         <Empty description="Нет сообщений..." />
       )}
+      <Modal visible={!!previewImage} onCancel={() => setPreviewImage(null)} footer={null}>
+        <img src={previewImage} style={{ width: '100%' }} alt="Preview" />
+      </Modal>
     </div>
   );
 };

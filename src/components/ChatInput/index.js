@@ -39,7 +39,7 @@ const ChatInput = props => {
         <div className="chat-input__record-status">
           <i className="chat-input__record-status-buble"></i>
           Recording...
-          <Button className="stop-record" onClick={onStopRecording} type="link" shape="circle" icon="stop" />
+          <Button className="stop-record" onClick={onStopRecording} type="link" shape="circle" icon="close" />
         </div>
         ) : (
           <TextArea
@@ -64,7 +64,7 @@ const ChatInput = props => {
         >
           <Button type="link" shape="circle" icon="camera" />
         </UploadField>
-        {isRecording || value ? (
+        {isRecording || value || attachments.length ? (
           <Button onClick={sendMessage} type="link" shape="circle" icon="check-circle" style={{ color: 'green' }} />
         ) : (
           <div className="chat-input__record-btn">

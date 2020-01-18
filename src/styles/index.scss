@@ -23,3 +23,9 @@ html,
 input[type=file]::-webkit-file-upload-button {
   cursor: pointer;
 }
+
+.ant-modal-close-x {
+  width: 30px;
+  height: 30px;
+  line-height: 40px;
+}

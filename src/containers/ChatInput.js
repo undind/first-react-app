@@ -49,11 +49,25 @@ const ChatInput = ({
     recorder.ondataavailable = e => {
       const file = new File([e.data], 'audio.webm');
       setLoading(true);
+
+      filesApi.upload(file).then(({ data }) => {
+        sendAudio(data.file._id).then(() => {
+          setLoading(false);
+        });
+      });
     };
   };
 
   const onError = err => {
     console.log('The following error occured: ' + err);
+  };
+
+  const sendAudio = audioId => {
+    return fetchSendMessage({
+      text: null,
+      dialogId: currentDialogId,
+      attachments: [audioId],
+    });
   };
 
   const handleOutsideClick = (el, e) => {
@@ -63,21 +77,25 @@ const ChatInput = ({
   }
 
   const sendMessage = () => {
-    fetchSendMessage(value, currentDialogId, attachments.map(file => file.uid));
-    setValue('');
-    setAttachments([]);
-  }
+    if (isRecording) {
+      mediaRecorder.stop();
+    } else if (value || attachments.length) {
+      fetchSendMessage({
+        text: value,
+        dialogId: currentDialogId,
+        attachments: attachments.map(file => file.uid),
+      });
+      setValue('');
+      setAttachments([]);
+    }
+  };
 
   const handleSendMessage = (e) => {
     if (e.keyCode === 13) {
       sendMessage();
     }
   }
-
-  const onStartRecord = () => {
-    setIsRecording(true)
-  }
-
+  
   const onStopRecording = () => {
     setIsRecording(false)
   }
